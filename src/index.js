@@ -1,26 +1,22 @@
-/**
- * @class ExampleComponent
+/* 
+ * Copyright (c) 2018 Bruce Schubert.
+ * The MIT License
+ * http://www.opensource.org/licenses/mit-license
  */
+import LayerButton from './components/LayerButton';
+import LayerList from './components/LayerList';
+import Layers from './components/Layers';
+import Markers from './components/Markers';
+import Search from './components/Search';
+import SearchPreview from './components/SearchPreview';
+import Tools from './components/Tools';
 
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-
-import styles from './styles.css'
-
-export default class ExampleComponent extends Component {
-  static propTypes = {
-    text: PropTypes.string
-  }
-
-  render() {
-    const {
-      text
-    } = this.props
-
-    return (
-      <div className={styles.test}>
-        Example Component: {text}
-      </div>
-    )
-  }
+export {
+  Layers,
+  LayerList,
+  LayerButton,
+  Markers,
+  Search,
+  SearchPreview,
+  Tools
 }

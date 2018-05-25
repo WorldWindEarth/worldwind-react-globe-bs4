@@ -1,6 +1,6 @@
 {
   "name": "worldwind-react-globe-bootstrapv4",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "React Globe UI components using Bootstrap and NASA WorldWind.",
   "author": "emxsys",
   "license": "MIT",
@@ -17,7 +17,12 @@
     "predeploy": "cd example && npm install && npm run build",
     "deploy": "gh-pages -d example/build"
   },
-  "dependencies": {},
+  "dependencies": {
+    "bootstrap": "^4.1.1",
+    "jquery": "^3.3.1",
+    "popper.js": "^1.14.3",
+    "worldwind-react-globe": "^0.4.0"
+  },
   "peerDependencies": {
     "prop-types": "^15.5.4",
     "react": "^15.0.0 || ^16.0.0",
@@ -25,7 +30,7 @@
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
-    "babel-eslint": "^8.2.1",
+    "babel-eslint": "^8.2.3",
     "babel-plugin-external-helpers": "^6.22.0",
     "babel-preset-env": "^1.6.0",
     "babel-preset-react": "^6.24.1",

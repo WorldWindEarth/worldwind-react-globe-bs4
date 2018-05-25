@@ -15,12 +15,13 @@ npm install --save worldwind-react-globe-bootstrapv4
 ```jsx
 import React, { Component } from 'react'
 
-import MyComponent from 'worldwind-react-globe-bootstrapv4'
+import Globe from 'worldwind-react-globe'
+import { Layers } from 'worldwind-react-globe-bootstrapv4'
 
-class Example extends Component {
+class App extends Component {
   render () {
     return (
-      <MyComponent />
+      <Globe />
     )
   }
 }
@@ -28,4 +29,4 @@ class Example extends Component {
 
 ## License
 
-MIT © [emxsys](https://github.com/emxsys)
+MIT © [Bruce Schubert](https://github.com/emxsys)
