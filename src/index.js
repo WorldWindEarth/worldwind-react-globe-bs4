@@ -7,7 +7,8 @@ import LayerButton from './components/LayerButton';
 import LayerList from './components/LayerList';
 import Layers from './components/Layers';
 import Markers from './components/Markers';
-import Search from './components/Search';
+import Settings from './components/Settings';
+import SearchBox from './components/SearchBox';
 import SearchPreview from './components/SearchPreview';
 import Tools from './components/Tools';
 
@@ -16,7 +17,8 @@ export {
   LayerList,
   LayerButton,
   Markers,
-  Search,
+  Settings,
+  SearchBox,
   SearchPreview,
   Tools
 }
