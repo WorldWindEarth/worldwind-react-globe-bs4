@@ -13,20 +13,27 @@ import './Layers.css';
 export default class LayerList extends Component {
     static propTypes = {
         layers: PropTypes.array.isRequired,
+        separatorAfter: PropTypes.bool,
         globe: PropTypes.instanceOf(Globe)
     }   
 
     render() {
         // Create a list of items for React to render; 
-        // each item must have a unique key
+        // Reverse the layers so the top-most layer is displayed first
         let layerElements = this.props.layers.map((layer) =>
             <LayerButton key={layer.uniqueId} layer={layer} enabled={layer.enabled} globe={this.props.globe} />
         );
-        // Reverse the layers so the top-most layer is displayed first
         layerElements.reverse();
 
+        let separator = this.props.separatorAfter ? <hr/> : null;
+        
         return (
-            <div className="list-group">{layerElements}</div>
+            <div>
+              <div className="list-group">
+                {layerElements}
+              </div>
+              {separator}
+            </div>
             );
     }
 };
