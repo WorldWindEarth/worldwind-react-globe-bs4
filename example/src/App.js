@@ -18,8 +18,14 @@ export default class App extends Component {
     }
     this.globeRef = React.createRef()
     this.markersRef = React.createRef()
+    this.globe = null
   }
-
+  
+  componentDidMount() {
+    // Get the component with the WorldWindow after mounting
+    this.globe = this.globeRef.current
+  }
+  
   render() {
     const layers = [
       "eox-sentinal2-labels",
@@ -31,7 +37,9 @@ export default class App extends Component {
     const styleNoPointer = {
       pointerEvents: 'none'
     }
-
+    let baseLayers = (this.globe ? this.globe.getLayers('base') : []);
+    let overlayLayers = (this.globe ? this.globe.getLayers('overlay') : []);
+    let settingLayers = (this.globe ? this.globe.getLayers('settings') : []);
     return (
       <div className='App container-fluid p-0'>
           <div className='globe'>
@@ -49,7 +57,7 @@ export default class App extends Component {
               <div className='card-columns'>
                   <div id='layers' className='collapse interactive'>
                       <Layers
-                          layerLists={[layers]} 
+                          layerLists={[baseLayers, overlayLayers]} 
                           globe={this.globe} />
                   </div>
                   <div id='markers' className='collapse interactive'>
@@ -60,7 +68,7 @@ export default class App extends Component {
                   </div>
                   <div id='settings' className='collapse interactive'>
                       <Settings
-                          layerLists={[]} 
+                          layerLists={[settingLayers]} 
                           globe={this.globe} />
                   </div>
               </div>
