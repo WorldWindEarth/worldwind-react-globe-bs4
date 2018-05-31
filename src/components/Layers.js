@@ -8,7 +8,6 @@ import PropTypes from 'prop-types'
 import Globe from 'worldwind-react-globe'
 import FontAwesome from 'react-fontawesome'
 import LayerList  from './LayerList'
-import './Layers.css'
 
 export default class Layers extends Component {
 
@@ -48,7 +47,7 @@ export default class Layers extends Component {
         <div className="card globe-card w-100">
             <div className="card-header">
                 <h5 className="card-title">
-                    <FontAwesome name="list"/> {this.props.title}
+                    <FontAwesome name={this.props.icon}/> {this.props.title}
                     <button type="button" className="close pull-right" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
