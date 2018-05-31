@@ -1,7 +1,7 @@
 {
   "name": "worldwind-react-globe-bs4",
   "version": "0.1.0",
-  "description": "React Globe UI components using Bootstrap and NASA WorldWind.",
+  "description": "React Globe UI components using Bootstrap with Web WorldWind.",
   "keywords": [
     "react",
     "react-component",
