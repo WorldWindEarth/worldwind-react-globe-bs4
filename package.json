@@ -1,5 +1,5 @@
 {
-  "name": "worldwind-react-globe-bootstrapv4",
+  "name": "worldwind-react-globe-bs4",
   "version": "0.1.0",
   "description": "React Globe UI components using Bootstrap and NASA WorldWind.",
   "author": "emxsys",
@@ -21,7 +21,7 @@
     "bootstrap": "^4.1.1",
     "jquery": "^3.3.1",
     "popper.js": "^1.14.3",
-    "worldwind-react-globe": "^0.4.0"
+    "worldwind-react-globe": "^0.5.0"
   },
   "peerDependencies": {
     "prop-types": "^15.5.4",
