@@ -4,10 +4,10 @@
  * http://www.opensource.org/licenses/mit-license
  */
 import React, { Component } from 'react'
-import Globe from 'worldwind-react-globe'
-import './App.css'
+  import Globe from 'worldwind-react-globe'
+  import './App.css'
 
-export default class App extends Component {
+  export default class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -16,29 +16,59 @@ export default class App extends Component {
       alt: 10e6
     }
     this.globeRef = React.createRef();
+    this.markersRef = React.createRef();
   }
 
   render() {
-    // See Globe.defaultLayers for a list of layer string identifiers
     const layers = [
       "Sentinal2 with Labels", // partial names are OK
       "Compass",
       "Coordinates",
       "View Controls",
-      "Atmosphere",
       "Stars"
     ];
 
+    const styleNoPointer = {
+      pointer-events: 'none'
+    };
+    
     return (
-        <div className="fullscreen">
-            <Globe 
-                ref={this.globeRef}
-                layers={layers}
-                latitude={this.state.lat}
-                longitude={this.state.lon}
-                altitude={this.state.alt} 
-                />
-        </div>
-    )
+      <div className="App container-fluid p-0">
+          <div className="globe">
+              <Globe 
+                  ref={this.globeRef} 
+                  layers={layers}/>
+          </div>
+          <div className="globe-overlay noninteractive">
+              <Tools 
+                  globe={this.globeRef.current} 
+                  markers={this.markersRef.current}
+                  markersLayerName="Markers"/>
+          </div>
+          <div className="globe-overlay noninteractive">
+              <div className="card-columns">
+                  <div id="layers" className="collapse interactive">
+                      <Layers
+                          baseLayers={this.state.baseLayers} 
+                          overlayLayers={this.state.overlayLayers} 
+                          globe={this.globe} />
+                  </div>
+                  <div id="markers" className="collapse interactive">
+                      <Markers 
+                          ref={this.markersRef}
+                          globe={this.globeRef.current}
+                          markersLayerName="Markers" />
+                  </div>
+                  <div id="settings" className="collapse interactive">
+                      <Settings
+                          settingLayers={this.state.settingLayers} 
+                          debugLayers={this.state.debugLayers} 
+                          globe={this.globe} />
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      )
   }
 }
