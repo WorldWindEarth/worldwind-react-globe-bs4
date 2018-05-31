@@ -3,39 +3,61 @@
  * The MIT License
  * http://www.opensource.org/licenses/mit-license
  */
-import React, {Component} from 'react';
-import PropTypes from 'prop-types';
-import Globe from 'worldwind-react-globe';
-import LayerList  from './LayerList';
-import './Layers.css';
+import React, {Component} from 'react'
+import PropTypes from 'prop-types'
+import Globe from 'worldwind-react-globe'
+import FontAwesome from 'react-fontawesome'
+import LayerList  from './LayerList'
+import './Layers.css'
 
 export default class Layers extends Component {
 
   static propTypes = {
-      layerLists: PropTypes.array.isRequired,
-      globe: PropTypes.instanceOf(Globe)
+    title: PropTypes.string,
+    icon: PropTypes.string,
+    categories: PropTypes.arrayOf(PropTypes.string),
+    globe: PropTypes.instanceOf(Globe)
   }   
+  static defaultProps = {
+    title: 'Layers',
+    icon: 'list',
+    categories: []
+  }
 
   render() {
-    // TODO: process layer lists by category.
-    let key = 1
-    let cardBody = this.props.layerLists.map((layerList) =>
-      <LayerList key={key++} layers={layerList} globe={this.props.globe} />
-    )
+    
+    // Define the .card-body contents
+    let layerLists = null
+    if (this.props.globe) {
+      if (this.props.categories.length === 0) {
+        // Use a single list for all layers
+        layerLists = <LayerList layers={this.props.globe.getLayers()} globe={this.props.globe} />
+      } else {
+        // Use an individual layer list for each category
+        let i = 0
+        layerLists = this.props.categories.map((category) => 
+          <LayerList 
+            key={category} 
+            layers={this.props.globe.getLayers(category)} 
+            globe={this.props.globe}
+            separatorAfter={++i < this.props.categories.length}/>
+        )
+      }
+    }
     return (
         <div className="card globe-card w-100">
             <div className="card-header">
                 <h5 className="card-title">
-                    <span className="fas fa-list" aria-hidden="true"></span> Layers
+                    <FontAwesome name="list"/> {this.props.title}
                     <button type="button" className="close pull-right" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </h5>
             </div>
             <div className="card-body">
-              {cardBody}
+              {layerLists}
             </div>
         </div>
-    );
+    )
   }
-};
+}
