@@ -6,9 +6,10 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Globe from 'worldwind-react-globe';
+import FontAwesome from 'react-fontawesome';
 
 import Markers from './Markers';
-import './Tools.css';
+import style from './Tools.css';
 
 /* global WorldWind */
 
@@ -47,7 +48,7 @@ export default class Tools extends Component {
     }
         
     armDropMarker() {
-        this.props.globe.activateClickDrop(this.dropMarkerCallback);
+        this.props.globe.armClickDrop(this.dropMarkerCallback);
     };        
 
     dropMarkerCallback(position) {
@@ -75,7 +76,10 @@ export default class Tools extends Component {
         const globe = this.props.globe;
         const layer = globe.getLayer(this.props.markersLayerName);
         if (layer) {
+            // Add the placemark to the globe
             layer.addRenderable(placemark);
+            
+            // Add the placemark to the Markers component
             this.props.markers.addMarker(placemark);
         } else {
             console.warn("Renderable layer for markers not found: "+ this.props.markersLayerName);
@@ -91,26 +95,26 @@ export default class Tools extends Component {
         // Create a tool palette with dropdowns
         const listItems = Tools.pushpins.map((pushpin) => 
             <li key={pushpin} onClick={()=> this.selectPushpin(pushpin)}>
-                <a><img className="tool-image" src={pushpin} alt="Selected Marker"/></a> 
+                <a><img className={style.image} src={pushpin} alt="Selected Marker"/></a> 
             </li>
         );
         
         return (
             <div className="btn-group interactive p-3">
                 <button type="button" 
-                        className="btn btn-default btn-sm tool-button p-1"
-                        onClick={()=>this.armDropMarker()}>
-                    <span className="fas fa-plus" aria-hidden="true"></span>
-                    <img className="tool-image" src={this.state.selectedMarkerImage} alt="Marker"/>
+                        className={`${style.button} btn btn-default btn-sm p-1`}
+                        onClick={() => this.armDropMarker()}>
+                    <FontAwesome name='plus'/>
+                    <img className={style.image} src={this.state.selectedMarkerImage} alt="Marker"/>
                 </button>
                 <button type="button" id="marker-palette" 
-                        className="btn btn-default btn-sm tool-button dropdown-toggle" 
+                        className={`${style.button} btn btn-default btn-sm dropdown-toggle`}
                         data-toggle="dropdown" 
                         aria-haspopup="true" aria-expanded="false">
                     <span className="caret"></span>
                     <span className="sr-only">Markers Dropdown</span>
                 </button>
-                <ul id="marker-palette" className="dropdown-menu tool-dropdown">
+                <ul id="marker-palette" className={`${style.dropdown} dropdown-menu`}>
                     {listItems}
                 </ul>
             </div>

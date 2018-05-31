@@ -1,15 +1,15 @@
 
-.tool-button {
+.button {
     background:rgba(255,255,255,0.35);
 }
 
 
-.tool-dropdown {
+.dropdown {
     background:rgba(255,255,255,0.35) !important;
     min-width: 30px !important;
 }
 
-.tool-image {
+.image {
     width: 30px;
     height: 30px;
 }
