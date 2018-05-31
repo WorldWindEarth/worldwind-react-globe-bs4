@@ -6,7 +6,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Globe from 'worldwind-react-globe';
-import { LayerList } from 'worldwind-react-globe-bs4';
+import LayerList  from './LayerList';
 
 export default class Settings extends Component {
         

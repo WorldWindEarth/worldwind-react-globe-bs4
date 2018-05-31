@@ -1,7 +1,12 @@
+/* 
+ * Copyright (c) 2018 Bruce Schubert.
+ * The MIT License
+ * http://www.opensource.org/licenses/mit-license
+ */
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Globe from 'worldwind-react-globe';
-import { LayerList } from 'worldwind-react-globe-bs4';
+import LayerList  from './LayerList';
 import './Layers.css';
 
 export default class Layers extends Component {
