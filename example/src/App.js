@@ -4,11 +4,11 @@
  * http://www.opensource.org/licenses/mit-license
  */
 import React, { Component } from 'react'
+import Globe from 'worldwind-react-globe'
 import { 
   CardColumns, 
   Collapse, 
-  Container } from 'reactstrap';
-import Globe from 'worldwind-react-globe'
+  Container } from 'reactstrap'
 import { 
   LayersCard, 
   MarkersCard, 
@@ -21,6 +21,7 @@ import {
 import './App.css'
 
 export default class App extends Component {
+    
   constructor(props) {
     super(props)
     this.state = {
@@ -57,10 +58,6 @@ export default class App extends Component {
       {layer: 'atmosphere-day-night', options: {category: 'setting', enabled: false}}
     ]
     
-    const styleNoPointer = {
-      pointerEvents: 'none'
-    }
-    
     const navbarItems = [
       <NavBarItem key='lyr' title='Layers' icon='list' collapse={this.layersRef.current}/>,
       <NavBarItem key='mkr' title='Markers' icon='map-marker' collapse={this.markersRef.current}/>,
@@ -72,39 +69,39 @@ export default class App extends Component {
     return (
       <div>
         <NavBar 
-            title='worldwind-react-globe-bs4'
             logo=''
+            title='worldwind-react-globe-bs4'
             href='https://github.com/emxsys/worldwind-react-globe-bs4'
             items={navbarItems}
             search={navbarSearch} />
         <Container fluid className='p-0'>
-            <div className='globe'>
-                <Globe 
-                    ref={this.globeRef} 
-                    layers={layers}/>
-            </div>
-            <div className='overlayTools noninteractive'>
-                <Tools 
-                    globe={globe} 
-                    markers={this.markersRef.current}
-                    markersLayerName='Markers'/>
-            </div>
-            <div className='overlayCards noninteractive'>
-              <CardColumns>
-                  <LayersCard
-                    ref={this.layersRef}
-                    categories={['overlay', 'base']} 
-                    globe={globe} />
-                  <MarkersCard
-                        ref={this.markersRef}
-                        globe={globe}
-                        markersLayerName='Markers' />
-                  <SettingsCard
-                    ref={this.settingsRef}
-                    categories={['setting']} 
-                    globe={globe} />
-              </CardColumns>
-            </div>
+          <div className='globe'>
+              <Globe 
+                ref={this.globeRef} 
+                layers={layers}/>
+          </div>
+          <div className='overlayTools noninteractive'>
+              <Tools 
+                globe={globe} 
+                markers={this.markersRef.current}
+                markersLayerName='Markers'/>
+          </div>
+          <div className='overlayCards noninteractive'>
+            <CardColumns>
+              <LayersCard
+                ref={this.layersRef}
+                categories={['overlay', 'base']} 
+                globe={globe} />
+              <MarkersCard
+                ref={this.markersRef}
+                globe={globe}
+                markersLayerName='Markers' />
+              <SettingsCard
+                ref={this.settingsRef}
+                categories={['setting']} 
+                globe={globe} />
+            </CardColumns>
+          </div>
         </Container>
       </div>
     )
