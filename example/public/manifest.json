@@ -1,8 +1,0 @@
-{
-  "short_name": "worldwind-react-globe-bootstrapv4",
-  "name": "worldwind-react-globe-bootstrapv4",
-  "start_url": "./index.html",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
-}
