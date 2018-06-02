@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 import Globe from 'worldwind-react-globe';
 import FontAwesome from 'react-fontawesome';
 
-import Markers from './Markers';
+import MarkersCard from './MarkersCard';
 import style from './Tools.css';
 
 /* global WorldWind */
@@ -27,7 +27,7 @@ export default class Tools extends Component {
         
     static propTypes = {
         globe: PropTypes.instanceOf(Globe),
-        markers: PropTypes.instanceOf(Markers),
+        markers: PropTypes.instanceOf(MarkersCard),
         markersLayerName: PropTypes.string
     }   
     

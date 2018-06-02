@@ -3,13 +3,22 @@
  * The MIT License
  * http://www.opensource.org/licenses/mit-license
  */
-import React, {Component} from 'react';
-import PropTypes from 'prop-types';
+import React, {Component} from 'react'
+import PropTypes from 'prop-types'
 import FontAwesome from 'react-fontawesome'
-import Globe from 'worldwind-react-globe';
-import LayerList  from './LayerList';
+import Globe from 'worldwind-react-globe'
+import { 
+  Button, 
+  Card, 
+  CardHeader, 
+  CardBody, 
+  Collapse } from 'reactstrap'
+import LayerList  from './LayerList'
 
-export default class Settings extends Component {
+/**
+ * A collapsible Card for managing settings.
+ */
+export default class SettingsCard extends Component {
         
   static propTypes = {
     title: PropTypes.string,
@@ -22,12 +31,27 @@ export default class Settings extends Component {
     icon: 'cog',
     categories: []
   }
+  
+  constructor(props) {
+    super(props);
+
+    this.toggle = this.toggle.bind(this)
+    this.state = {
+      isOpen: false
+    }
+  }
+  
+  toggle() {
+    this.setState({
+      isOpen: !this.state.isOpen
+    });
+  }
+    
   render() {
     
-    // Define the .card-body contents
     let layerLists = null
+    
     if (this.props.globe) {
-      
       if (this.props.categories.length === 0) {
         // Use a single list for all layers
         layerLists = <LayerList layers={this.props.globe.getLayers()} globe={this.props.globe} />
@@ -45,19 +69,21 @@ export default class Settings extends Component {
       }
     }
     return (
-        <div className="card globe-card w-100">
-            <div className="card-header">
+      <Collapse isOpen={this.state.isOpen}>
+        <Card className="globe-card w-100 interactive">
+            <CardHeader>
                 <h5 className="card-title">
                     <FontAwesome name={this.props.icon}/> {this.props.title}
-                    <button type="button" className="close pull-right" aria-label="Close">
+                    <Button className="close pull-right" aria-label="Close" onClick={this.toggle} >
                         <span aria-hidden="true">&times;</span>
-                    </button>
+                    </Button>
                 </h5>
-            </div>
-            <div className="card-body">
+            </CardHeader>
+            <CardBody>
               {layerLists}
-            </div>
-        </div>
+            </CardBody>
+        </Card>
+      </Collapse>
     )
   }
 }

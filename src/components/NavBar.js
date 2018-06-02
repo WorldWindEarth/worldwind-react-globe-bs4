@@ -5,39 +5,63 @@
  */
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import 'bootstrap'
+import { 
+  Nav, 
+  Navbar, 
+  NavbarBrand, 
+  NavbarToggler, 
+  NavItem, 
+  NavLink, 
+  Collapse } from 'reactstrap';
 
 export default class NavBar extends Component {
 
   static propTypes = {
-      title: PropTypes.string.isRequired,
-      href: PropTypes.string,
-      logo: PropTypes.string,
-      items: PropTypes.array,
-      search: PropTypes.object
+    title: PropTypes.string.isRequired,
+    href: PropTypes.string,
+    logo: PropTypes.string,
+    items: PropTypes.array,
+    search: PropTypes.object
   }   
- 
+  
+  constructor(props) {
+    super(props);
+
+    this.toggle = this.toggle.bind(this);
+    this.state = {
+      isOpen: false
+    };
+  }
+  
+  toggle() {
+    this.setState({
+      isOpen: !this.state.isOpen
+    });
+  }
+  
   /**
    * Renders a BootStrap NavBar with branding, buttons and a search box.
    * @returns {String}
    */
   render() {
+    
+    const logo = this.props.logo ? <img src={this.props.logo} width='32' height='32' className='d-inline-block align-top' alt=''/> : null;
     return (
-        <nav className="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
-            <a className="navbar-brand" href={this.props.href}>
-                <img src={this.props.logo} width="32" height="32" className="d-inline-block align-top" alt=""/>
-                {this.props.title}
-            </a>
-            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
-                <span className="navbar-toggler-icon"></span>
-            </button>
-            <div className="collapse navbar-collapse" id="main-menu">
-                <ul className="navbar-nav mr-auto">
-                  {this.props.items}
-                </ul>
-                {this.props.search}
-            </div>
-        Ï</nav>
+      <Navbar dark color='dark' fixed='top' expand='md'>
+        <NavbarBrand href={this.props.href}>
+          {logo}
+          {this.props.title}
+        </NavbarBrand>
+        <NavbarToggler onClick={this.toggle} />
+        <Collapse isOpen={this.state.isOpen} navbar>
+          <Nav className='mr-auto' navbar>
+            {this.props.items}
+          </Nav>
+          <Nav className='ml-auto' navbar>
+            {this.props.search}
+          </Nav>
+        </Collapse>
+      </Navbar>
     )
   }
 }

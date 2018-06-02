@@ -7,9 +7,18 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import Globe from 'worldwind-react-globe'
 import FontAwesome from 'react-fontawesome'
+import { 
+  Button, 
+  Card, 
+  CardHeader, 
+  CardBody, 
+  Collapse } from 'reactstrap'
 import LayerList  from './LayerList'
 
-export default class Layers extends Component {
+/**
+ * A collapsable Card for managing layers.
+ */
+export default class LayersCard extends Component {
 
   static propTypes = {
     title: PropTypes.string,
@@ -22,15 +31,31 @@ export default class Layers extends Component {
     icon: 'list',
     categories: []
   }
+  
+  constructor(props) {
+    super(props);
 
+    this.toggle = this.toggle.bind(this);
+    this.state = {
+      isOpen: false
+    };
+  }
+  
+  toggle() {
+    this.setState({
+      isOpen: !this.state.isOpen
+    });
+  }
+  
   render() {
     
-    // Define the .card-body contents
     let layerLists = null
+    
     if (this.props.globe) {
       if (this.props.categories.length === 0) {
         // Use a single list for all layers
         layerLists = <LayerList layers={this.props.globe.getLayers()} globe={this.props.globe} />
+        
       } else {
         // Use an individual layer list for each category
         let i = 0
@@ -44,19 +69,21 @@ export default class Layers extends Component {
       }
     }
     return (
-        <div className="card globe-card w-100">
-            <div className="card-header">
+      <Collapse isOpen={this.state.isOpen}>
+        <Card className="globe-card w-100 interactive">
+            <CardHeader>
                 <h5 className="card-title">
                     <FontAwesome name={this.props.icon}/> {this.props.title}
-                    <button type="button" className="close pull-right" aria-label="Close">
+                    <Button className="close pull-right" aria-label="Close" onClick={this.toggle} >
                         <span aria-hidden="true">&times;</span>
-                    </button>
+                    </Button>
                 </h5>
-            </div>
-            <div className="card-body">
+            </CardHeader>
+            <CardBody>
               {layerLists}
-            </div>
-        </div>
+            </CardBody>
+        </Card>
+      </Collapse>
     )
   }
 }
