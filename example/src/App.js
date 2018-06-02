@@ -72,7 +72,7 @@ export default class App extends Component {
     return (
       <div>
         <NavBar 
-            title='Demo worldwind-react-globe-bs4'
+            title='worldwind-react-globe-bs4'
             logo=''
             href='https://github.com/emxsys/worldwind-react-globe-bs4'
             items={navbarItems}
