@@ -41,16 +41,13 @@
     "predeploy": "cd example && npm install && npm run build",
     "deploy": "gh-pages -d example/build"
   },
-  "dependencies": {
-    "bootstrap": "^4.1.1",
-    "jquery": "^3.3.1",
-    "popper.js": "^1.14.3",
-    "react-fontawesome": "^1.6.1"
-  },
+  "dependencies": {},
   "peerDependencies": {
     "prop-types": "^15.5.4",
     "react": "^15.0.0 || ^16.0.0",
     "react-dom": "^15.0.0 || ^16.0.0",
+    "react-fontawesome": "^1.6.1",
+    "reactstrap": "^6.0.1",
     "worldwind-react-globe": "^0.5.0"
   },
   "devDependencies": {
@@ -60,6 +57,7 @@
     "babel-preset-env": "^1.6.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
+    "bootstrap": "^4.1.1",
     "cross-env": "^5.1.4",
     "eslint": "^4.19.1",
     "eslint-config-standard": "^11.0.0",
@@ -70,10 +68,13 @@
     "eslint-plugin-react": "^7.7.0",
     "eslint-plugin-standard": "^3.0.1",
     "gh-pages": "^1.1.0",
+    "jquery": "^3.3.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-fontawesome": "^1.6.1",
     "react-scripts": "^1.1.1",
     "react-test-renderer": "^16.4.0",
+    "reactstrap": "^6.0.1",
     "rollup": "^0.54.0",
     "rollup-plugin-babel": "^3.0.3",
     "rollup-plugin-commonjs": "^8.2.1",
