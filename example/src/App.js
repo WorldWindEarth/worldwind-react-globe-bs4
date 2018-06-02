@@ -4,8 +4,20 @@
  * http://www.opensource.org/licenses/mit-license
  */
 import React, { Component } from 'react'
+import { 
+  CardColumns, 
+  Collapse, 
+  Container } from 'reactstrap';
 import Globe from 'worldwind-react-globe'
-import { Layers, Markers, NavBar, NavItem, SearchBox, Settings, Tools } from 'worldwind-react-globe-bs4'
+import { 
+  LayersCard, 
+  MarkersCard, 
+  NavBar, 
+  NavBarItem, 
+  SearchBox, 
+  SettingsCard, 
+  Tools } from 'worldwind-react-globe-bs4'
+
 import './App.css'
 
 export default class App extends Component {
@@ -18,7 +30,9 @@ export default class App extends Component {
       globe: null
     }
     this.globeRef = React.createRef()
+    this.layersRef = React.createRef()
     this.markersRef = React.createRef()
+    this.settingsRef = React.createRef()
   }
   
   componentDidMount() {
@@ -48,9 +62,9 @@ export default class App extends Component {
     }
     
     const navbarItems = [
-      <NavItem key='lyr' title='Layers' icon='list' href='#layers'/>,
-      <NavItem key='mkr' title='Markers' icon='map-marker' href='#markers'/>,
-      <NavItem key='set' title='Settings' icon='cog' href='#settings'/>
+      <NavBarItem key='lyr' title='Layers' icon='list' collapse={this.layersRef.current}/>,
+      <NavBarItem key='mkr' title='Markers' icon='map-marker' collapse={this.markersRef.current}/>,
+      <NavBarItem key='set' title='Settings' icon='cog' collapse={this.settingsRef.current}/>
     ]
    
     const navbarSearch = <SearchBox globe={globe}/>
@@ -58,12 +72,12 @@ export default class App extends Component {
     return (
       <div>
         <NavBar 
-            title='worldwind-react-globe-bs4'
+            title='Demo worldwind-react-globe-bs4'
             logo=''
             href='https://github.com/emxsys/worldwind-react-globe-bs4'
             items={navbarItems}
             search={navbarSearch} />
-        <div className='container-fluid p-0'>
+        <Container fluid className='p-0'>
             <div className='globe'>
                 <Globe 
                     ref={this.globeRef} 
@@ -76,28 +90,22 @@ export default class App extends Component {
                     markersLayerName='Markers'/>
             </div>
             <div className='overlayCards noninteractive'>
-                <div className='card-columns'>
-                    <div id='layers' className='collapse interactive'>
-                      <Layers
-                        categories={['overlay', 'base']} 
-                        globe={globe} />
-                    </div>
-                    <div id='markers' className='collapse interactive'>
-                        <Markers 
-                          ref={this.markersRef}
-                          globe={globe}
-                          markersLayerName='Markers' />
-                    </div>
-                    <div id='settings' className='collapse interactive'>
-                      <Layers
-                          title='Settings'
-                          icon='cog'
-                          categories={['setting']} 
-                          globe={globe} />
-                    </div>
-                </div>
+              <CardColumns>
+                  <LayersCard
+                    ref={this.layersRef}
+                    categories={['overlay', 'base']} 
+                    globe={globe} />
+                  <MarkersCard
+                        ref={this.markersRef}
+                        globe={globe}
+                        markersLayerName='Markers' />
+                  <SettingsCard
+                    ref={this.settingsRef}
+                    categories={['setting']} 
+                    globe={globe} />
+              </CardColumns>
             </div>
-        </div>
+        </Container>
       </div>
     )
   }
