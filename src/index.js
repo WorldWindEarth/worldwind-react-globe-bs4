@@ -5,23 +5,23 @@
  */
 import LayerButton from './components/LayerButton';
 import LayerList from './components/LayerList';
-import Layers from './components/Layers';
-import Markers from './components/Markers';
+import LayersCard from './components/LayersCard';
+import MarkersCard from './components/MarkersCard';
 import NavBar from './components/NavBar';
-import NavItem from './components/NavItem';
-import Settings from './components/Settings';
+import NavBarItem from './components/NavBarItem';
+import SettingsCard from './components/SettingsCard';
 import SearchBox from './components/SearchBox';
 import SearchPreview from './components/SearchPreview';
 import Tools from './components/Tools';
 
 export {
-  Layers,
+  LayersCard,
   LayerList,
   LayerButton,
-  Markers,
+  MarkersCard,
   NavBar,
-  NavItem,
-  Settings,
+  NavBarItem,
+  SettingsCard,
   SearchBox,
   SearchPreview,
   Tools
