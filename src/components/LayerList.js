@@ -35,4 +35,4 @@ export default class LayerList extends Component {
             </div>
             );
     }
-};
+}
