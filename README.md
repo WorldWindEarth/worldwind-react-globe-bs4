@@ -11,80 +11,109 @@ npm install --save worldwind-react-globe
 npm install --save worldwind-react-globe-bs4
 ```
 
-## Usage
+## Example 
 
 ```jsx
-
 import React, { Component } from 'react'
 import Globe from 'worldwind-react-globe'
-import { Layers, Markers, Settings, Tools } from 'worldwind-react-globe-bs4'
+import { 
+  CardColumns, 
+  Collapse, 
+  Container } from 'reactstrap'
+import { 
+  LayersCard, 
+  MarkersCard, 
+  NavBar, 
+  NavBarItem, 
+  SearchBox, 
+  SettingsCard, 
+  Tools } from 'worldwind-react-globe-bs4'
+
 import './App.css'
 
 export default class App extends Component {
+    
   constructor(props) {
     super(props)
     this.state = {
       lat: 34.2,
       lon: -119.2,
-      alt: 10e6
+      alt: 10e6,
+      globe: null
     }
     this.globeRef = React.createRef()
+    this.layersRef = React.createRef()
     this.markersRef = React.createRef()
-    this.globe = null
+    this.settingsRef = React.createRef()
   }
   
   componentDidMount() {
     // Get the component with the WorldWindow after mounting
-    this.globe = this.globeRef.current
+    this.setState({globe: this.globeRef.current})
   }
   
   render() {
+    const globe = this.globeRef.current
+    
     const layers = [
-      "eox-sentinal2-labels",
-      "compass",
-      "coordinates",
-      "view-controls",
-      "stars"
+      {layer: 'blue-marble', options: {category: 'base', enabled: false}},
+      {layer: 'blue-marble-landsat', options: {category: 'base', enabled: false}},
+      {layer: 'eox-sentinal2', options: {category: 'base', enabled: false}},
+      {layer: 'eox-sentinal2-labels', options: {category: 'base', enabled: true}},
+      {layer: 'eox-openstreetmap', options: {category: 'overlay', enabled: false, opacity: 0.8}},
+      {layer: 'renderables', options: {category: 'data', enabled: true, displayName: 'Markers'}},
+      {layer: 'compass', options: {category: 'setting', enabled: false}},
+      {layer: 'coordinates', options: {category: 'setting', enabled: true}},
+      {layer: 'view-controls', options: {category: 'setting', enabled: true}},
+      {layer: 'stars', options: {category: 'setting', enabled: false}},
+      {layer: 'atmosphere-day-night', options: {category: 'setting', enabled: false}}
     ]
-    const styleNoPointer = {
-      pointerEvents: 'none'
-    }
-    let baseLayers = (this.globe ? this.globe.getLayers('base') : []);
-    let overlayLayers = (this.globe ? this.globe.getLayers('overlay') : []);
-    let settingLayers = (this.globe ? this.globe.getLayers('settings') : []);
+    
+    const navbarItems = [
+      <NavBarItem key='lyr' title='Layers' icon='list' collapse={this.layersRef.current}/>,
+      <NavBarItem key='mkr' title='Markers' icon='map-marker' collapse={this.markersRef.current}/>,
+      <NavBarItem key='set' title='Settings' icon='cog' collapse={this.settingsRef.current}/>
+    ]
+   
+    const navbarSearch = <SearchBox globe={globe}/>
+    
     return (
-      <div className='App container-fluid p-0'>
+      <div>
+        <NavBar 
+            logo=''
+            title='worldwind-react-globe-bs4'
+            href='https://github.com/emxsys/worldwind-react-globe-bs4'
+            items={navbarItems}
+            search={navbarSearch} />
+        <Container fluid className='p-0'>
           <div className='globe'>
               <Globe 
-                  ref={this.globeRef} 
-                  layers={layers}/>
+                ref={this.globeRef} 
+                layers={layers}/>
           </div>
-          <div className='globe-overlay noninteractive'>
+          <div className='overlayTools noninteractive'>
               <Tools 
-                  globe={this.globeRef.current} 
-                  markers={this.markersRef.current}
-                  markersLayerName='Markers'/>
+                globe={globe} 
+                markers={this.markersRef.current}
+                markersLayerName='Markers'/>
           </div>
-          <div className='globe-overlay noninteractive'>
-              <div className='card-columns'>
-                  <div id='layers' className='collapse interactive'>
-                      <Layers
-                          layerLists={[baseLayers, overlayLayers]} 
-                          globe={this.globe} />
-                  </div>
-                  <div id='markers' className='collapse interactive'>
-                      <Markers 
-                          ref={this.markersRef}
-                          globe={this.globeRef.current}
-                          markersLayerName='Markers' />
-                  </div>
-                  <div id='settings' className='collapse interactive'>
-                      <Settings
-                          layerLists={[settingLayers]} 
-                          globe={this.globe} />
-                  </div>
-              </div>
+          <div className='overlayCards noninteractive'>
+            <CardColumns>
+              <LayersCard
+                ref={this.layersRef}
+                categories={['overlay', 'base']} 
+                globe={globe} />
+              <MarkersCard
+                ref={this.markersRef}
+                globe={globe}
+                markersLayerName='Markers' />
+              <SettingsCard
+                ref={this.settingsRef}
+                categories={['setting']} 
+                globe={globe} />
+            </CardColumns>
           </div>
+        </Container>
       </div>
     )
   }
