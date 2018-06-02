@@ -4,6 +4,7 @@
  * http://www.opensource.org/licenses/mit-license
  */
 import React, {Component} from 'react'
+import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
 import FontAwesome from 'react-fontawesome'
 import Globe from 'worldwind-react-globe'
@@ -18,7 +19,7 @@ import LayerList  from './LayerList'
 /**
  * A collapsible Card for managing settings.
  */
-export default class SettingsCard extends Component {
+const SettingsCard = observer(class SettingsCard extends Component {
         
   static propTypes = {
     title: PropTypes.string,
@@ -64,7 +65,8 @@ export default class SettingsCard extends Component {
             key={category} 
             layers={this.props.globe.getLayers(category)} 
             globe={this.props.globe}
-            separatorAfter={++i < this.props.categories.length}/>
+            separatorAfter={++i < this.props.categories.length}
+            lastUpdate={this.props.globe.getCategoryTimestamp(category).get()} />
         )
       }
     }
@@ -86,4 +88,5 @@ export default class SettingsCard extends Component {
       </Collapse>
     )
   }
-}
+})
+export default SettingsCard
