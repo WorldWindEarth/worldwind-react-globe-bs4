@@ -4,6 +4,7 @@
  * http://www.opensource.org/licenses/mit-license
  */
 import React, {Component} from 'react'
+import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
 import Globe from 'worldwind-react-globe'
 import FontAwesome from 'react-fontawesome'
@@ -15,10 +16,11 @@ import {
   Collapse } from 'reactstrap'
 import LayerList  from './LayerList'
 
+
 /**
  * A collapsable Card for managing layers.
  */
-export default class LayersCard extends Component {
+const LayersCard = observer(class LayersCard extends Component {
 
   static propTypes = {
     title: PropTypes.string,
@@ -26,6 +28,7 @@ export default class LayersCard extends Component {
     categories: PropTypes.arrayOf(PropTypes.string),
     globe: PropTypes.instanceOf(Globe)
   }   
+  
   static defaultProps = {
     title: 'Layers',
     icon: 'list',
@@ -34,19 +37,18 @@ export default class LayersCard extends Component {
   
   constructor(props) {
     super(props);
-
     this.toggle = this.toggle.bind(this);
     this.state = {
       isOpen: false
-    };
+    }
   }
   
   toggle() {
     this.setState({
       isOpen: !this.state.isOpen
-    });
+    })
   }
-  
+
   render() {
     
     let layerLists = null
@@ -64,7 +66,8 @@ export default class LayersCard extends Component {
             key={category} 
             layers={this.props.globe.getLayers(category)} 
             globe={this.props.globe}
-            separatorAfter={++i < this.props.categories.length}/>
+            separatorAfter={++i < this.props.categories.length}
+            lastUpdate={this.props.globe.getCategoryTimestamp(category).get()} />
         )
       }
     }
@@ -72,11 +75,11 @@ export default class LayersCard extends Component {
       <Collapse isOpen={this.state.isOpen}>
         <Card className="globe-card w-100 interactive">
             <CardHeader>
-                <h5 className="card-title">
-                    <FontAwesome name={this.props.icon}/> {this.props.title}
-                    <Button className="close pull-right" aria-label="Close" onClick={this.toggle} >
-                        <span aria-hidden="true">&times;</span>
-                    </Button>
+              <h5 className="card-title">
+                <FontAwesome name={this.props.icon}/> {this.props.title}
+                <Button className="close pull-right" aria-label="Close" onClick={this.toggle} >
+                  <span aria-hidden="true">&times;</span>
+                </Button>
                 </h5>
             </CardHeader>
             <CardBody>
@@ -86,4 +89,6 @@ export default class LayersCard extends Component {
       </Collapse>
     )
   }
-}
+})
+
+export default LayersCard
