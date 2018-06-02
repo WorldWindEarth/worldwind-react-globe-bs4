@@ -1,7 +1,7 @@
 {
   "name": "worldwind-react-globe-bs4",
   "version": "0.3.0",
-  "description": "React UI components using Bootstrap to interact with the Web WorldWind virtural globe from NASA and ESA.",
+  "description": "React components for interacting with the Web WorldWind virtual globe SDK from NASA & ESA made with Bootstrap 4",
   "keywords": [
     "react",
     "react-component",
@@ -44,11 +44,13 @@
   "dependencies": {},
   "peerDependencies": {
     "prop-types": "^15.5.4",
+    "mobx": "^4.3.0",
+    "mobx-react": "^5.1.2",
     "react": "^15.0.0 || ^16.0.0",
     "react-dom": "^15.0.0 || ^16.0.0",
     "react-fontawesome": "^1.6.1",
     "reactstrap": "^6.0.1",
-    "worldwind-react-globe": "^0.5.0"
+    "worldwind-react-globe": "^0.6.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -69,6 +71,8 @@
     "eslint-plugin-standard": "^3.0.1",
     "gh-pages": "^1.1.0",
     "jquery": "^3.3.1",
+    "mobx": "^4.3.0",
+    "mobx-react": "^5.1.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-fontawesome": "^1.6.1",
@@ -82,7 +86,7 @@
     "rollup-plugin-peer-deps-external": "^2.0.0",
     "rollup-plugin-postcss": "^1.1.0",
     "rollup-plugin-url": "^1.3.0",
-    "worldwind-react-globe": "^0.5.0"
+    "worldwind-react-globe": "^0.6.0"
   },
   "files": [
     "dist"
