@@ -42,6 +42,7 @@ export default class App extends Component {
   }
   
   render() {
+    
     const globe = this.globeRef.current
     
     const layers = [
@@ -70,7 +71,7 @@ export default class App extends Component {
       <div>
         <NavBar 
             logo=''
-            title='worldwind-react-globe-bs4'
+            title='demo: worldwind-react-globe-bs4'
             href='https://github.com/emxsys/worldwind-react-globe-bs4'
             items={navbarItems}
             search={navbarSearch} />
