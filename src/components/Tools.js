@@ -7,25 +7,20 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Globe from 'worldwind-react-globe';
 import FontAwesome from 'react-fontawesome';
-
+import { 
+  Button,
+  ButtonDropdown, 
+  DropdownToggle, 
+  DropdownMenu, 
+  DropdownItem } from 'reactstrap';
 import MarkersCard from './MarkersCard';
 import style from './Tools.css';
 
 /* global WorldWind */
 
 export default class Tools extends Component {
-    constructor(props) {
-        super(props);
-        this.state = { 
-            selectedMarkerImage: Tools.pushpins[0],
-        };        
-        this.isDropArmed = false;
-        this.dropCallback =  null;
-        
-        this.dropMarkerCallback = this.dropMarkerCallback.bind(this);
-    }        
-        
-    static propTypes = {
+    
+     static propTypes = {
         globe: PropTypes.instanceOf(Globe),
         markers: PropTypes.instanceOf(MarkersCard),
         markersLayerName: PropTypes.string
@@ -41,7 +36,27 @@ export default class Tools extends Component {
         "https://files.worldwind.arc.nasa.gov/artifactory/web/0.9.0/images/pushpins/castshadow-white.png",
         "https://files.worldwind.arc.nasa.gov/artifactory/web/0.9.0/images/pushpins/castshadow-black.png"
     ];
-    
+       
+    constructor(props) {
+        super(props);
+        this.state = { 
+          selectedMarkerImage: Tools.pushpins[0],
+          dropdownOpen: false
+        };        
+        this.isDropArmed = false;
+        this.dropCallback =  null;
+        
+        this.dropMarkerCallback = this.dropMarkerCallback.bind(this);
+        this.toggle = this.toggle.bind(this);
+    }
+
+    toggle() {
+      this.setState({
+        dropdownOpen: !this.state.dropdownOpen
+      })
+    }
+        
+
     selectPushpin(pushpin) {
         this.setState({ selectedMarkerImage: pushpin });
         this.armDropMarker();
@@ -93,30 +108,27 @@ export default class Tools extends Component {
         }
         
         // Create a tool palette with dropdowns
-        const listItems = Tools.pushpins.map((pushpin) => 
-            <li key={pushpin} onClick={()=> this.selectPushpin(pushpin)}>
-                <a><img className={style.image} src={pushpin} alt="Selected Marker"/></a> 
-            </li>
+        const dropdownItems = Tools.pushpins.map((pushpin) => 
+          <DropdownItem key={pushpin} onClick={()=> this.selectPushpin(pushpin)} className={style.button}>
+              <img className={style.image} src={pushpin} alt="Selected Marker"/>
+          </DropdownItem>
         );
         
         return (
             <div className="btn-group interactive p-3">
-                <button type="button" 
-                        className={`${style.button} btn btn-default btn-sm p-1`}
-                        onClick={() => this.armDropMarker()}>
+                <Button 
+                    className={`${style.button} p-1`}
+                    onClick={() => this.armDropMarker()}>
                     <FontAwesome name='plus'/>
                     <img className={style.image} src={this.state.selectedMarkerImage} alt="Marker"/>
-                </button>
-                <button type="button" id="marker-palette" 
-                        className={`${style.button} btn btn-default btn-sm dropdown-toggle`}
-                        data-toggle="dropdown" 
-                        aria-haspopup="true" aria-expanded="false">
-                    <span className="caret"></span>
-                    <span className="sr-only">Markers Dropdown</span>
-                </button>
-                <ul id="marker-palette" className={`${style.dropdown} dropdown-menu`}>
-                    {listItems}
-                </ul>
+                </Button>
+                <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+                  <DropdownToggle caret className={style.toggle}/>
+                  <DropdownMenu className={style.dropdown}>
+                    {dropdownItems}
+                  </DropdownMenu>
+                </ButtonDropdown>                
+
             </div>
         );
     }
