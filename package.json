@@ -1,6 +1,6 @@
 {
   "name": "worldwind-react-globe-bs4",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "React components for interacting with the Web WorldWind virtual globe SDK from NASA & ESA made with Bootstrap 4",
   "keywords": [
     "react",
