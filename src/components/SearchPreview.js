@@ -14,7 +14,7 @@ import {
   ModalBody, 
   ModalFooter } from 'reactstrap'
 
-import './SearchPreview.css'
+import style from './SearchPreview.css'
 
 /* global WorldWind */
 
@@ -112,13 +112,13 @@ class SearchPreview  extends Component{
     )
   
     return (
-      <Modal isOpen={this.props.results.length > 0} toggle={this.props.handleHideModal}>
+      <Modal isOpen={this.props.results.length > 0} toggle={this.props.handleHideModal} className={style.modal}>
         <ModalHeader toggle={this.props.handleHideModal}>{this.props.title}</ModalHeader>
         <ModalBody>
-          <div className="preview-globe">
+          <div className={style.globe}>
             <Globe id="preview-globe" projection="Mercator" ref={this.globeRef}/>
           </div>
-          <div className="modal-body-table">
+          <div className={style.table}>
               <Alert color="warning" isOpen={this.state.showWarning}>
                 <Button className="close pull-right" aria-label="Close" onClick={this.dismissWarning} >
                   <span aria-hidden="true">&times;</span>
