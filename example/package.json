@@ -5,7 +5,7 @@
   "private": true,
   "license": "MIT",
   "dependencies": {
-    "ajv": "^6.5.1",
+    "ajv": "^6.5.2",
     "bootstrap": "^4.1.1",
     "jquery": "^1.12.4",
     "mobx": "^4.3.1",
@@ -16,7 +16,7 @@
     "react-fontawesome": "^1.6.1",
     "react-scripts": "^1.1.4",
     "reactstrap": "^6.2.0",
-    "worldwind-react-globe": "git+https://github.com/EarthViewer/worldwind-react-globe.git",
+    "worldwind-react-globe": "git+https://github.com/EarthViewer/worldwind-react-globe.git#semver:0.7.2",
     "worldwind-react-globe-bs4": "git+https://github.com/EarthViewer/worldwind-react-globe-bs4.git"
   },
   "scripts": {

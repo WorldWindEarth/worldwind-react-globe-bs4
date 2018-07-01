@@ -43,8 +43,9 @@ export default class NavBar extends Component {
   
   componentDidMount() {
     // Auto-collapse the _mobile_ main menu when its button items are clicked
+    let self = this;
     $('.navbar-collapse a[role="button"]').click(function () {
-        $('.navbar-collapse').collapse('hide');
+        self.setState({isOpen: false});
     });
   }
   

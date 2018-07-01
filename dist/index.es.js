@@ -517,8 +517,9 @@ var NavBar = function (_Component) {
     key: 'componentDidMount',
     value: function componentDidMount() {
       // Auto-collapse the _mobile_ main menu when its button items are clicked
+      var self = this;
       $('.navbar-collapse a[role="button"]').click(function () {
-        $('.navbar-collapse').collapse('hide');
+        self.setState({ isOpen: false });
       });
     }
 
