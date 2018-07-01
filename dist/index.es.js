@@ -4,6 +4,7 @@ import Globe from 'worldwind-react-globe';
 import { observer } from 'mobx-react';
 import FontAwesome from 'react-fontawesome';
 import { Alert, Button, ButtonDropdown, Card, CardBody, CardHeader, Collapse, DropdownItem, DropdownMenu, DropdownToggle, Modal, ModalBody, ModalFooter, ModalHeader, Nav, NavItem, NavLink, Navbar, NavbarBrand, NavbarToggler } from 'reactstrap';
+import $ from 'jquery';
 
 var classCallCheck = function (instance, Constructor) {
   if (!(instance instanceof Constructor)) {
@@ -510,6 +511,14 @@ var NavBar = function (_Component) {
     value: function toggle() {
       this.setState({
         isOpen: !this.state.isOpen
+      });
+    }
+  }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      // Auto-collapse the _mobile_ main menu when its button items are clicked
+      $('.navbar-collapse a[role="button"]').click(function () {
+        $('.navbar-collapse').collapse('hide');
       });
     }
 

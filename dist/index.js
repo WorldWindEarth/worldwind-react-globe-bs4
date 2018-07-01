@@ -11,6 +11,7 @@ var Globe = _interopDefault(require('worldwind-react-globe'));
 var mobxReact = require('mobx-react');
 var FontAwesome = _interopDefault(require('react-fontawesome'));
 var reactstrap = require('reactstrap');
+var $ = _interopDefault(require('jquery'));
 
 var classCallCheck = function (instance, Constructor) {
   if (!(instance instanceof Constructor)) {
@@ -517,6 +518,14 @@ var NavBar = function (_Component) {
     value: function toggle() {
       this.setState({
         isOpen: !this.state.isOpen
+      });
+    }
+  }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      // Auto-collapse the _mobile_ main menu when its button items are clicked
+      $('.navbar-collapse a[role="button"]').click(function () {
+        $('.navbar-collapse').collapse('hide');
       });
     }
 
