@@ -4,6 +4,7 @@
  * http://www.opensource.org/licenses/mit-license
  */
 import React, {Component} from 'react'
+import $ from 'jquery'
 import PropTypes from 'prop-types'
 import { 
   Nav, 
@@ -36,6 +37,14 @@ export default class NavBar extends Component {
   toggle() {
     this.setState({
       isOpen: !this.state.isOpen
+    });
+  }
+  
+  
+  componentDidMount() {
+    // Auto-collapse the _mobile_ main menu when its button items are clicked
+    $('.navbar-collapse a[role="button"]').click(function () {
+        $('.navbar-collapse').collapse('hide');
     });
   }
   
