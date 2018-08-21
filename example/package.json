@@ -1,7 +1,7 @@
 {
   "name": "worldwind-react-globe-bs4-example",
   "homepage": "https://emxsys.github.io/worldwind-react-globe-bs4",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "private": true,
   "license": "MIT",
   "dependencies": {
@@ -16,8 +16,8 @@
     "react-fontawesome": "^1.6.1",
     "react-scripts": "^1.1.4",
     "reactstrap": "^6.2.0",
-    "worldwind-react-globe": "git+https://github.com/EarthViewer/worldwind-react-globe.git#semver:0.7.2",
-    "worldwind-react-globe-bs4": "git+https://github.com/EarthViewer/worldwind-react-globe-bs4.git"
+    "worldwind-react-globe": "git+https://github.com/emxsys/worldwind-react-globe.git#semver:1.0.0",
+    "worldwind-react-globe-bs4": "git+https://github.com/emxsys/worldwind-react-globe-bs4.git#semver:1.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
