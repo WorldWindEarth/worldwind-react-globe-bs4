@@ -1,6 +1,6 @@
 {
   "name": "worldwind-react-globe-bs4",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "Bootstrap 4 UI components for the React worldwind-react-globe virtual globe, including a nav-bar, layer management, markers and settings.",
   "private": false,
   "keywords": [
