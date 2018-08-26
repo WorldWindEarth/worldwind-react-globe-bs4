@@ -1,6 +1,11 @@
 # worldwind-react-globe-bs4
 
-> React Globe UI components using Bootstrap and the [Web WorldWind](https://github.com/NASAWorldWind/WebWorldWind) virtual globe SDK from [NASA & ESA](https://worldwind.arc.nasa.gov/web/) .
+> React Bootstrap UI components for the [worldwind-react-globe](https://github.com/emxsys/worldwind-react-globe) virtual globe componen, featuring:
+> - Customizable NavBar menu with mobile support
+> - Layer manager for base layers and overlays
+> - Marker palette and marker manager
+> - Place name search
+> - Settings manager
 
 [![NPM](https://img.shields.io/npm/v/worldwind-react-globe-bs4.svg)](https://www.npmjs.com/package/worldwind-react-globe-bs4) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
