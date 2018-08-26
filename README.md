@@ -6,6 +6,8 @@
 > - Marker palette and marker manager
 > - Place name search
 > - Settings manager
+>
+> [Demo](https://emxsys.github.io/worldwind-react-globe-bs4/)
 
 [![NPM](https://img.shields.io/npm/v/worldwind-react-globe-bs4.svg)](https://www.npmjs.com/package/worldwind-react-globe-bs4) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
