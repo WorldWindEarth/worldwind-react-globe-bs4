@@ -1,6 +1,6 @@
 # worldwind-react-globe-bs4
 
-> React Bootstrap UI components for the [worldwind-react-globe](https://github.com/emxsys/worldwind-react-globe) virtual globe componen, featuring:
+> React Bootstrap UI components for the [worldwind-react-globe](https://github.com/emxsys/worldwind-react-globe) 3D globe component, featuring:
 > - Customizable NavBar menu with mobile support
 > - Layer manager for base layers and overlays
 > - Marker palette and marker manager
